@@ -1,0 +1,34 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if(nums.length==0) return 0;
+        //1、快慢指针 时间复杂度O(n)
+        int j = 1; //记录非重复的下标
+        for(int i=1; i<nums.length; i++){
+            if(nums[i-1]!=nums[i]){
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+}
+
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        //2、两重循环  时间复杂度O(n^2)
+        int i=0; //确认不重复值下标
+        int j= 1; 
+        while(i<nums.length){
+            while(j<nums.length){
+                if(nums[j] != nums[i]){
+                    nums[++i] = nums[j++];
+                    break;
+                } 
+                j++;
+            }
+            if(j==nums.length)  return i+1;
+        }
+        return 1;
+    }
+}
